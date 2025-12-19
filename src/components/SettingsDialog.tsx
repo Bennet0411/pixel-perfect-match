@@ -4,6 +4,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { useSettings } from "@/contexts/SettingsContext";
+import { useTranslation } from "@/hooks/useTranslation";
 import { Volume2, Music, Languages, Type, Droplets } from "lucide-react";
 
 interface SettingsDialogProps {
@@ -13,13 +14,14 @@ interface SettingsDialogProps {
 
 const SettingsDialog = ({ open, onOpenChange }: SettingsDialogProps) => {
   const { settings, updateSettings } = useSettings();
+  const { t } = useTranslation();
 
   const fontSizeLabels = {
-    1: 'Sehr Klein',
-    2: 'Klein',
-    3: 'Normal',
-    4: 'Groß',
-    5: 'Sehr Groß',
+    1: t('verySmall'),
+    2: t('small'),
+    3: t('medium'),
+    4: t('large'),
+    5: t('veryLarge'),
   };
 
   return (
@@ -27,7 +29,7 @@ const SettingsDialog = ({ open, onOpenChange }: SettingsDialogProps) => {
       <DialogContent className="bg-fantasy-dark/95 border-2 border-fantasy-gold/50 text-fantasy-light max-w-md">
         <DialogHeader>
           <DialogTitle className="font-cinzel text-2xl text-fantasy-gold text-center">
-            Einstellungen
+            {t('settingsTitle')}
           </DialogTitle>
         </DialogHeader>
 
@@ -36,7 +38,7 @@ const SettingsDialog = ({ open, onOpenChange }: SettingsDialogProps) => {
           <div className="space-y-2">
             <div className="flex items-center gap-2">
               <Volume2 className="w-5 h-5 text-fantasy-gold" />
-              <Label className="font-cinzel text-fantasy-light">Sound: {settings.soundVolume}%</Label>
+              <Label className="font-cinzel text-fantasy-light">{t('soundVolume')}: {settings.soundVolume}%</Label>
             </div>
             <Slider
               value={[settings.soundVolume]}
@@ -51,7 +53,7 @@ const SettingsDialog = ({ open, onOpenChange }: SettingsDialogProps) => {
           <div className="space-y-2">
             <div className="flex items-center gap-2">
               <Music className="w-5 h-5 text-fantasy-gold" />
-              <Label className="font-cinzel text-fantasy-light">Musik: {settings.musicVolume}%</Label>
+              <Label className="font-cinzel text-fantasy-light">{t('musicVolume')}: {settings.musicVolume}%</Label>
             </div>
             <Slider
               value={[settings.musicVolume]}
@@ -66,7 +68,7 @@ const SettingsDialog = ({ open, onOpenChange }: SettingsDialogProps) => {
           <div className="space-y-2">
             <div className="flex items-center gap-2">
               <Languages className="w-5 h-5 text-fantasy-gold" />
-              <Label className="font-cinzel text-fantasy-light">Sprache</Label>
+              <Label className="font-cinzel text-fantasy-light">{t('language')}</Label>
             </div>
             <RadioGroup
               value={settings.language}
@@ -75,11 +77,11 @@ const SettingsDialog = ({ open, onOpenChange }: SettingsDialogProps) => {
             >
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value="de" id="lang-de" className="border-fantasy-gold text-fantasy-gold" />
-                <Label htmlFor="lang-de" className="text-fantasy-light cursor-pointer">Deutsch</Label>
+                <Label htmlFor="lang-de" className="text-fantasy-light cursor-pointer">{t('german')}</Label>
               </div>
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value="en" id="lang-en" className="border-fantasy-gold text-fantasy-gold" />
-                <Label htmlFor="lang-en" className="text-fantasy-light cursor-pointer">English</Label>
+                <Label htmlFor="lang-en" className="text-fantasy-light cursor-pointer">{t('english')}</Label>
               </div>
             </RadioGroup>
           </div>
@@ -89,7 +91,7 @@ const SettingsDialog = ({ open, onOpenChange }: SettingsDialogProps) => {
             <div className="flex items-center gap-2">
               <Type className="w-5 h-5 text-fantasy-gold" />
               <Label className="font-cinzel text-fantasy-light">
-                Schriftgröße: {fontSizeLabels[settings.fontSize]}
+                {t('fontSize')}: {fontSizeLabels[settings.fontSize]}
               </Label>
             </div>
             <RadioGroup
@@ -116,7 +118,7 @@ const SettingsDialog = ({ open, onOpenChange }: SettingsDialogProps) => {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Droplets className="w-5 h-5 text-fantasy-gold" />
-              <Label className="font-cinzel text-fantasy-light">Blut zensieren</Label>
+              <Label className="font-cinzel text-fantasy-light">{t('bloodCensored')}</Label>
             </div>
             <Switch
               checked={settings.bloodCensored}

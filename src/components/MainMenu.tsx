@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FantasyButton } from "./FantasyButton";
 import SettingsDialog from "./SettingsDialog";
 import { toast } from "sonner";
+import { useTranslation } from "@/hooks/useTranslation";
 
 interface MainMenuProps {
   onNewGame: () => void;
@@ -9,16 +10,17 @@ interface MainMenuProps {
 
 const MainMenu = ({ onNewGame }: MainMenuProps) => {
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const { t } = useTranslation();
 
   const handleContinue = () => {
-    toast.info("Weiterspielen", {
-      description: "Kein gespeicherter Spielstand gefunden.",
+    toast.info(t('continue'), {
+      description: t('noSaveFound'),
     });
   };
 
   const handleLoadGame = () => {
-    toast.info("Spielstand laden wird vorbereitet...", {
-      description: "Diese Funktion ist bald verfügbar.",
+    toast.info(t('saves'), {
+      description: t('savesNotImplemented'),
     });
   };
 
@@ -31,19 +33,19 @@ const MainMenu = ({ onNewGame }: MainMenuProps) => {
       {!settingsOpen && (
         <div className="menu-glass rounded-2xl px-8 py-10 md:px-16 md:py-12 text-center animate-fade-in">
           <h1 className="font-cinzel font-bold text-4xl md:text-6xl mb-8 text-primary tracking-widest animate-title-glow">
-            ÄONIEN
+            {t('title')}
           </h1>
 
           <div className="flex flex-col gap-4">
-            <FantasyButton onClick={handleContinue}>Weiterspielen</FantasyButton>
-            <FantasyButton onClick={onNewGame}>New Game</FantasyButton>
-            <FantasyButton onClick={handleLoadGame}>Saves</FantasyButton>
-            <FantasyButton onClick={() => setSettingsOpen(true)}>Einstellungen</FantasyButton>
-            <FantasyButton onClick={handleExit}>Exit</FantasyButton>
+            <FantasyButton onClick={handleContinue}>{t('continue')}</FantasyButton>
+            <FantasyButton onClick={onNewGame}>{t('newGame')}</FantasyButton>
+            <FantasyButton onClick={handleLoadGame}>{t('saves')}</FantasyButton>
+            <FantasyButton onClick={() => setSettingsOpen(true)}>{t('settings')}</FantasyButton>
+            <FantasyButton onClick={handleExit}>{t('exit')}</FantasyButton>
           </div>
 
           <p className="mt-8 text-sm text-muted-foreground tracking-wide">
-            Ein interaktives Fantasy-Abenteuer
+            {t('subtitle')}
           </p>
         </div>
       )}
