@@ -1,7 +1,7 @@
 export const translations = {
   de: {
     // Main Menu
-    title: 'ÄONIEN',
+    title: 'Äonien',
     subtitle: 'Ein interaktives Fantasy-Abenteuer',
     continue: 'Weiterspielen',
     newGame: 'Neues Spiel',
@@ -39,7 +39,7 @@ export const translations = {
   },
   en: {
     // Main Menu
-    title: 'ÄONIEN',
+    title: 'Äonien',
     subtitle: 'An interactive fantasy adventure',
     continue: 'Continue',
     newGame: 'New Game',
