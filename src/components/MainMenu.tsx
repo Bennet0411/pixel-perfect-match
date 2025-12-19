@@ -6,6 +6,12 @@ interface MainMenuProps {
 }
 
 const MainMenu = ({ onNewGame }: MainMenuProps) => {
+  const handleContinue = () => {
+    toast.info("Weiterspielen", {
+      description: "Kein gespeicherter Spielstand gefunden.",
+    });
+  };
+
   const handleLoadGame = () => {
     toast.info("Spielstand laden wird vorbereitet...", {
       description: "Diese Funktion ist bald verfügbar.",
@@ -19,9 +25,7 @@ const MainMenu = ({ onNewGame }: MainMenuProps) => {
   };
 
   const handleExit = () => {
-    toast.info("Browser-Spiel", {
-      description: "Das Spiel kann nicht direkt geschlossen werden.",
-    });
+    window.close();
   };
 
   return (
@@ -31,6 +35,7 @@ const MainMenu = ({ onNewGame }: MainMenuProps) => {
       </h1>
 
       <div className="flex flex-col gap-4">
+        <FantasyButton onClick={handleContinue}>Weiterspielen</FantasyButton>
         <FantasyButton onClick={onNewGame}>New Game</FantasyButton>
         <FantasyButton onClick={handleLoadGame}>Saves</FantasyButton>
         <FantasyButton onClick={handleSettings}>Einstellungen</FantasyButton>
