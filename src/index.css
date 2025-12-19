@@ -1,96 +1,67 @@
+@import "@fontsource/cinzel/500.css";
+@import "@fontsource/cinzel/700.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Fantasy color palette */
+    --background: 30 20% 8%;
+    --foreground: 42 55% 87%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 30 25% 12%;
+    --card-foreground: 42 55% 87%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 30 25% 10%;
+    --popover-foreground: 42 55% 87%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Golden accent */
+    --primary: 42 45% 64%;
+    --primary-foreground: 30 30% 10%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Dark brown buttons */
+    --secondary: 30 35% 16%;
+    --secondary-foreground: 42 55% 87%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 30 20% 20%;
+    --muted-foreground: 42 30% 60%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Magical cyan/blue glow */
+    --accent: 195 80% 60%;
+    --accent-foreground: 30 20% 8%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 42 55% 87%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 42 40% 45%;
+    --input: 30 25% 20%;
+    --ring: 42 45% 64%;
 
-    --radius: 0.5rem;
+    --radius: 1.875rem;
 
-    --sidebar-background: 0 0% 98%;
+    /* Custom fantasy colors */
+    --gold-glow: 42 60% 70%;
+    --magic-blue: 195 100% 65%;
+    --magic-purple: 280 70% 65%;
+    --deep-brown: 30 40% 12%;
+    --darker-brown: 30 45% 7%;
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    /* Shadows and glows */
+    --shadow-dark: 0 6px 12px hsla(0, 0%, 0%, 0.6);
+    --glow-gold: 0 0 15px hsla(42, 60%, 70%, 0.6);
+    --glow-magic: 0 0 20px hsla(195, 100%, 65%, 0.4);
 
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Sidebar (not used but keeping for compatibility) */
+    --sidebar-background: 30 20% 8%;
+    --sidebar-foreground: 42 55% 87%;
+    --sidebar-primary: 42 45% 64%;
+    --sidebar-primary-foreground: 30 30% 10%;
+    --sidebar-accent: 30 35% 16%;
+    --sidebar-accent-foreground: 42 55% 87%;
+    --sidebar-border: 42 40% 45%;
+    --sidebar-ring: 42 45% 64%;
   }
 }
 
@@ -99,7 +70,113 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html {
+    font-family: 'Cinzel', serif;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    overflow: hidden;
+  }
+}
+
+@layer components {
+  /* Fantasy button styling */
+  .fantasy-button {
+    @apply relative font-medium tracking-wide;
+    font-family: 'Cinzel', serif;
+    background: linear-gradient(145deg, hsl(var(--secondary)), hsl(var(--darker-brown)));
+    border: 2px solid hsl(var(--border));
+    box-shadow: 
+      inset 0 0 10px hsla(0, 0%, 0%, 0.6),
+      0 6px 12px hsla(0, 0%, 0%, 0.6);
+    transition: all 0.25s ease;
+  }
+
+  .fantasy-button:hover {
+    transform: translateY(-2px) scale(1.03);
+    background: linear-gradient(145deg, hsl(30, 35%, 22%), hsl(30, 40%, 10%));
+    box-shadow: var(--glow-gold);
+  }
+
+  .fantasy-button:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: inset 0 0 12px hsla(0, 0%, 0%, 0.9);
+  }
+
+  /* Glow text effect */
+  .glow-text {
+    text-shadow: 0 0 10px hsla(42, 60%, 70%, 0.4);
+  }
+
+  /* Screen overlay */
+  .screen-overlay {
+    background: hsla(0, 0%, 0%, 0.55);
+  }
+
+  /* Menu container glass effect */
+  .menu-glass {
+    background: hsla(30, 25%, 8%, 0.85);
+    box-shadow: 0 0 40px hsla(0, 0%, 0%, 0.8);
+    backdrop-filter: blur(10px);
+  }
+}
+
+@layer utilities {
+  /* Magical particle animation */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0) translateX(0);
+      opacity: 0.6;
+    }
+    50% {
+      transform: translateY(-20px) translateX(10px);
+      opacity: 1;
+    }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 20px hsla(42, 60%, 70%, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 35px hsla(42, 60%, 70%, 0.6);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes title-glow {
+    0%, 100% {
+      text-shadow: 0 0 10px hsla(42, 60%, 70%, 0.4);
+    }
+    50% {
+      text-shadow: 0 0 25px hsla(42, 60%, 70%, 0.7), 0 0 50px hsla(42, 60%, 70%, 0.3);
+    }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.6s ease-out forwards;
+  }
+
+  .animate-title-glow {
+    animation: title-glow 3s ease-in-out infinite;
   }
 }
